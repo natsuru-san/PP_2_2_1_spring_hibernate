@@ -10,18 +10,19 @@ import java.util.List;
 @Repository
 public class UserDaoImp implements UserDao {
 
+   @SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
    @Autowired
    private SessionFactory sessionFactory;
 
    @Override
    public void add(User user) {
-      sessionFactory.getCurrentSession().save(user.getCar());
+//      sessionFactory.getCurrentSession().save(user.getCar());
       sessionFactory.getCurrentSession().save(user);
    }
 
    @Override
    @SuppressWarnings("unchecked")
-   public List<User> listUsers() {
+   public List<User> getListUsers() {
       TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
       return query.getResultList();
    }
